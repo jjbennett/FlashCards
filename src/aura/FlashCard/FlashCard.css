@@ -1,0 +1,70 @@
+.THIS.card {
+    background-color: white;
+}
+
+/* Paper css from: http://www.techrepublic.com/blog/web-designer/how-to-get-the-ruled-paper-background-effect-with-css3 */
+.THIS .paper {
+    font: normal 12px/1.5 "Lucida Grande", arial, sans-serif;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    color: #444;
+    line-height: 20px;
+    border: 1px solid #d2d2d2;
+    background: #fff;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+    background: -webkit-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -moz-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -ms-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -o-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    -webkit-background-size: 100% 20px;
+    -moz-background-size: 100% 20px;
+    -ms-background-size: 100% 20px;
+    -o-background-size: 100% 20px;
+    background-size: 100% 20px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+}
+
+/* Flashcard css from: http://codrspace.com/kara/implementing-flashcard-flip-with-css3-transitions */
+.THIS .stage {
+    -webkit-perspective: 1000;						/* Sets up your viewpoint for seeing the animation */
+}
+
+.THIS .flashcard {
+    height: token(flashCardHeight);  
+    width: token(flashCardWidth); 						/* Centers the flashcard on the page */
+    border: 1px solid gray;							/*  Border makes the animation easier to see. */
+    box-shadow: 2px 2px 2px #0070D2;
+    -webkit-transform-style: preserve-3d;			/* Provides 3D perspective. */
+    transition: all 0.3s;							/* Slows down any transitions (e.g. rotation) */
+    -webkit-transition: all 0.3s;
+}
+
+.THIS .flipped, .THIS .back {
+    transform: rotateX(180deg);
+    -webkit-transform: rotateX(180deg);			/* Rotates flashcard div when applied */
+}
+
+.THIS .front, .THIS .back {
+    position: absolute;                    
+    -webkit-backface-visibility: hidden;			/*  Hides back side of text (it's upside down) */
+    height: token(flashCardHeight);  
+    width: token(flashCardWidth);                                                  
+}
+
+.THIS .back {
+    text-align: left;
+    font-size: 1.5em;
+}
+
+.THIS .front>p {
+    margin-top: 10%;                                                      
+    font-size: 3em;
+    text-align: center; 
+}

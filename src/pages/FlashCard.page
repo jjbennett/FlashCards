@@ -1,0 +1,16 @@
+<apex:page >
+    <apex:includeLightning />
+
+    <div id="lightning" />
+
+    <script>
+        $Lightning.use("c:FlashCardOut", function() {
+          $Lightning.createComponent("c:FlashCardContainer",
+          {},
+          "lightning",
+          function(cmp) {
+            // do some stuff
+          });
+        });
+    </script>
+</apex:page>

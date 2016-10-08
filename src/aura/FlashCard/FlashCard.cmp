@@ -1,0 +1,51 @@
+<aura:component >
+    
+    <!-- attributes -->
+    <aura:attribute name="flashCards" type="FlashCard__c[]" access="public" />
+    <aura:attribute name="flashCard" type="FlashCard__c" access="private" />
+    <aura:attribute name="index" type="Integer" default="0" access="private" />
+    <aura:attribute name="side" type="String" default="Back" access="private" />
+    
+    <!-- register events -->
+    <aura:registerEvent name="clearFlashCard" type="c:flashCardEvent" />
+    
+    <!-- methods -->
+    <aura:method name="resetCards" action="{!c.reset}" />
+    
+    <!-- markup -->
+    <div class="slds-box slds-is-static slds-theme--shade card">
+        <div class="slds-page-header" role="banner">
+            <div class="slds-media slds-media--center">
+                <div class="slds-media__figure">
+                    <lightning:icon iconName="standard:question_feed" size="large" alternativeText="Question Image"/>
+                </div>
+                <div class="slds-media__body">
+                    <lightning:badge label="Flash Cards"/>
+                </div>
+                <div class="slds-media__figure slds-media__figure--reverse">
+                    <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                        <lightning:buttonGroup aura:id="btnGrp">
+                            <lightning:button aura:id="clearBtn" label="Clear" onclick="{!c.clear}"/>
+                            <lightning:button aura:id="nextBtn" label="Next" onclick="{!c.next}"/>
+                            <lightning:button aura:id="prevBtn" label="Prev" onclick="{!c.prev}"/>
+                            <lightning:button aura:id="flipBtn" label="Flip" onclick="{!c.flip}"/>
+                        </lightning:buttonGroup>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slds-p-around--small slds-align--absolute-center" aura:id="stage">
+            <div style="stage" onclick="{!c.flip}">
+                <div class="flashcard" aura:id="flashcard">
+                    <div class="front">
+                        <p>{!v.flashCard.Name}</p>
+                    </div>
+                    <div class="back paper slds-scrollable--y">
+                        <ui:outputRichText value="{!v.flashCard.Definition__c}" class="slds-p-top--x-small"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

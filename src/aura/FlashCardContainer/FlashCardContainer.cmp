@@ -1,0 +1,28 @@
+<aura:component controller="FlashCardController"
+                implements="force:lightningQuickActionWithoutHeader,force:appHostable">
+    
+    <!-- No Longer need to add the static resource in Winter 17 -->
+    <!-- <ltng:require styles="/resource/SLDS203/assets/styles/salesforce-lightning-design-system-ltng.css" /> -->
+    
+    <!-- attributes -->
+    <aura:attribute name="flashCards" type="FlashCard__c[]" access="private"/>
+    <aura:attribute name="listCategories" type="SelectOption[]" access="private"/>
+    
+    <!-- handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="clearFlashCard" event="c:flashCardEvent" action="{!c.clear}" />
+    
+    <!-- markup -->
+    <lightning:layout horizontalAlign="center" pullToBoundary="medium">
+        <lightning:layoutItem padding="around-small">
+            <lightning:select name="topics" label="Select a topic" onchange="{!c.categoryChanged}" aura:id="categories">
+                <aura:iteration items="{!v.listCategories}" var="cat">
+                    <option value="{!cat.value}" label="{!cat.label}"/>
+                </aura:iteration>
+            </lightning:select>
+            <div aura:id="card">
+                <c:FlashCard flashCards="{!v.flashCards}" aura:id="flashCardCmp"/>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>
